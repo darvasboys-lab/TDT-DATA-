@@ -63,8 +63,25 @@
 .ferritin-list{gap:8px}
 .ferritin-row{padding:10px 11px}
 
-/* Full-width touch inputs for CR number, age and mobile number. */
-#fieldsIdentity > .field:nth-child(3),#fieldsIdentity > .field:nth-child(4),#fieldsIdentity > .field:nth-child(6){grid-column:1/-1}
+/* Keep CR and mobile keypads full width; align age + sex on one row. */
+#fieldsIdentity > .field:nth-child(3),#fieldsIdentity > .field:nth-child(5),#fieldsIdentity > .age-sex-inline{grid-column:1/-1}
+.age-sex-inline{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);gap:9px;align-items:start}
+.age-sex-inline .field{margin:0}
+.age-sex-inline .stepper{grid-template-columns:33px minmax(0,1fr) 33px;gap:3px}
+.age-sex-inline .stepper-btn{min-height:50px;font-size:27px;border-radius:9px;padding:0}
+.age-sex-inline .stepper-middle{border-radius:9px}
+.age-sex-inline .stepper-input{font-size:20px;min-height:27px}
+.age-sex-inline .stepper-unit{font-size:9px;padding-bottom:3px}
+.age-sex-inline .sex-options{gap:5px}
+.age-sex-inline .sex-options .touch-option{min-height:50px;font-size:16px;border-radius:10px;padding:0 2px}
+.iap-quick{margin-top:12px;border:1px solid #b9dccb;background:linear-gradient(135deg,#f5fff8,#e7f5ec);border-radius:14px;padding:11px}
+.iap-quick-head{font-size:11px;color:#29694d;font-weight:850;margin-bottom:8px}
+.iap-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.iap-quick-item{background:#ffffffd9;border:1px solid #dcece4;border-radius:10px;padding:9px 10px}
+.iap-quick-item span{display:block;font-size:10px;font-weight:750;color:#6a8680}
+.iap-quick-item strong{display:block;font-size:21px;font-weight:850;color:#266a4f;line-height:1.3;margin-top:4px}
+.iap-quick-status{font-size:10px;color:#637c75;margin-top:8px;line-height:1.5}
+@media(max-width:365px){.age-sex-inline{gap:6px}.age-sex-inline .stepper{grid-template-columns:29px minmax(0,1fr) 29px;gap:2px}.age-sex-inline .stepper-btn{font-size:25px;min-height:46px}.age-sex-inline .sex-options .touch-option{min-height:46px;font-size:14px}.iap-quick-item{padding:7px 8px}.iap-quick-item strong{font-size:18px}}
 #fieldsClinical > .field:nth-child(1),#fieldsClinical > .field:nth-child(2){grid-column:1/-1}
 #fieldsGrowth > .field:nth-child(1){grid-column:1/-1}
 /* TDT DATA 2.0 · one-tap controls, exact age/sex growth reference, ferritin picker */
@@ -136,7 +153,16 @@
         <button type="button" class="smallbtn" id="newRecord" style="margin-top:10px">+ New record</button>
       </div>
       <form id="recordForm" autocomplete="off">
-        <details class="accordion glass" open><summary><span class="no">01</span> Patient identification <span class="chev">⌄</span></summary><div class="inner"><div class="two" id="fieldsIdentity"></div></div></details>
+        <details class="accordion glass" open><summary><span class="no">01</span> Patient identification <span class="chev">⌄</span></summary><div class="inner"><div class="two" id="fieldsIdentity"></div>
+          <div class="iap-quick" aria-live="polite" aria-atomic="true">
+            <div class="iap-quick-head">IAP 2015 · 50th percentile reference</div>
+            <div class="iap-quick-grid">
+              <div class="iap-quick-item"><span>IDEAL HEIGHT</span><strong id="iapQuickHeight">—</strong></div>
+              <div class="iap-quick-item"><span>IDEAL WEIGHT</span><strong id="iapQuickWeight">—</strong></div>
+            </div>
+            <div class="iap-quick-status" id="iapQuickStatus">Select M or F to see the age-based reference. Verify the patient's age.</div>
+          </div>
+        </div></details>
         <details class="accordion glass" open><summary><span class="no">02</span> Clinical measurements <span class="chev">⌄</span></summary><div class="inner"><p class="quick-default-hint">Height starts at 120 cm and weight at 30 kg for faster entry. Confirm actual measurements before saving.</p><div class="two" id="fieldsClinical"></div></div></details>
         <details class="accordion glass" open><summary><span class="no">03</span> Ferritin monitoring · expandable history <span class="chev">⌄</span></summary><div class="inner"><p class="subtle">Tap a date to select <strong>year → month → day</strong>. Enter a value and date together. Add as many later ferritin values as needed.</p><div id="ferritinFields" class="ferritin-list"></div><div id="extraFerritinFields" class="ferritin-list" style="margin-top:8px"></div><button type="button" class="add-ferritin" id="addFerritin">＋ Add another ferritin result</button><p class="subtle" style="margin-top:9px">Results 10 onward create additional value/date columns after the original 39 columns. Existing patient data and image links stay in place.</p></div></details>
         <details class="accordion glass"><summary><span class="no">04</span> Growth &amp; puberty <span class="chev">⌄</span></summary><div class="inner"><div class="two" id="fieldsGrowth"></div><div id="iapHint" class="iap-status">Enter age and sex to calculate the IAP 2015 50th-percentile height and weight reference.</div><div class="subtle" style="margin-top:7px">Published IAP reference ages 5–18 years; estimates between chart ages are interpolated. This is a reference, not a diagnosis. Actual height/weight remain separate entries.</div></div></details>
@@ -211,7 +237,7 @@ function register(index,field){fields[index]=field;field.dataset.index=String(in
 function fieldWrap(index){const w=el('div','field'),l=el('label','label',boot.headers[index]+(index<3?' *':''));l.htmlFor='field'+index;w.append(l);return w;}
 function touchOptions(index,options,cssClass){
   const w=fieldWrap(index),hidden=register(index,el('input'));hidden.type='hidden';hidden.id='field'+index;w.append(hidden);
-  const area=el('div','touch-options '+cssClass);options.forEach(([value,label])=>{const b=el('button','touch-option',label);b.type='button';b.dataset.value=value;b.addEventListener('click',()=>{hidden.value=value;hidden.dispatchEvent(new Event('input',{bubbles:true}));refreshTouch(index);});area.append(b);});w.append(area);w.append(el('div','choice-legacy subtle'));return w;
+  const area=el('div','touch-options '+cssClass);options.forEach(([value,label])=>{const b=el('button','touch-option',label);b.type='button';b.dataset.value=value;if(index===4)b.setAttribute('aria-label',value==='M'?'Male':'Female');b.addEventListener('click',()=>{hidden.value=value;hidden.dispatchEvent(new Event('input',{bubbles:true}));refreshTouch(index);});area.append(b);});w.append(area);w.append(el('div','choice-legacy subtle'));return w;
 }
 function refreshTouch(index){const field=fields[index],w=field.closest('.field');if(!w)return;const value=field.value.toUpperCase();const normalized=value==='MALE'?'M':value==='FEMALE'?'F':value;
   w.querySelectorAll('.touch-option').forEach(b=>{const chosen=b.dataset.value===normalized;b.classList.toggle('selected',chosen);b.setAttribute('aria-pressed',String(chosen));});
@@ -231,16 +257,15 @@ function numericField(index,unit,step){
   const w=fieldWrap(index),stepper=el('div','stepper'),left=el('button','stepper-btn minus','−'),right=el('button','stepper-btn plus','+');left.type=right.type='button';left.setAttribute('aria-label','Decrease '+boot.headers[index]);right.setAttribute('aria-label','Increase '+boot.headers[index]);
   const central=el('div','stepper-middle'),input=register(index,el('input','stepper-input'));input.id='field'+index;input.type='number';input.inputMode='decimal';input.min='0';input.max=index===3?'120':'300';input.step=String(step);input.placeholder='—';
   const small=el('div','stepper-unit',unit);central.append(input,small);
-  if(index===3)w.append(el('div','inline-hint','Starts at 13 years for faster entry. Confirm each patient’s actual age.'));
   const update=dir=>{const current=input.value===''?0:Number(input.value);const amount=Math.round((current+dir*step)*100)/100;input.value=String(Math.max(0,Math.min(Number(input.max),amount)));input.dispatchEvent(new Event('input',{bubbles:true}));};left.addEventListener('click',()=>update(-1));right.addEventListener('click',()=>update(1));stepper.append(left,central,right);w.append(stepper);return w;
 }
 function makeField(index,kind){
-  if(index===4)return touchOptions(index,[['M','M · Male'],['F','F · Female']],'sex-options');
+  if(index===4)return touchOptions(index,[['M','M'],['F','F']],'sex-options');
   if(index===10||index===11)return touchOptions(index,[['YES','YES'],['NO','NO']],'binary-options');
   if(index===30)return touchOptions(index,[['1','1'],['2','2'],['3','3'],['4','4'],['5','5']],'tanner-options');
   if(index===3)return numericField(index,'years',1);
-  if(index===6)return numericField(index,'cm',0.5);
-  if(index===7)return numericField(index,'kg',0.1);
+  if(index===6)return numericField(index,'cm',1);
+  if(index===7)return numericField(index,'kg',0.5);
   if(index>=13&&index<=29&&index%2===1)return dateTouch(index).wrapper;
   const w=fieldWrap(index);
   let input;
@@ -249,7 +274,7 @@ function makeField(index,kind){
   input.id='field'+index;
   if(index===0){input.type='text';input.readOnly=true;input.classList.add('locked-date');input.setAttribute('aria-label','Automatically set audit date');}
   if(index===2){input.type='text';input.inputMode='numeric';input.maxLength=30;input.placeholder='Enter or tap CR number';}
-  if(index===1){input.placeholder='CAPITAL LETTERS ONLY';input.classList.add('name-upper');input.autocapitalize='characters';input.spellcheck=false;}
+  if(index===1){input.placeholder='Enter patient name';input.classList.add('name-upper');input.autocapitalize='characters';input.spellcheck=false;}
   if(index===5){input.type='text';input.inputMode='numeric';input.maxLength=10;input.placeholder='10-digit mobile number';}
   if([9,12,14,16,18,20,22,24,26,28,31,32,34,35].includes(index)){input.type='number';input.inputMode='decimal';input.min='0';input.step='any';input.placeholder='Numeric value';}
   if([31,32].includes(index)){input.readOnly=true;input.classList.add('iap-readonly');input.title='Calculated IAP 2015 50th centile reference where available';}
@@ -275,7 +300,6 @@ function makeField(index,kind){
     });w.append(pad);
   }else w.append(input);
   if(index===0){w.append(el('div','inline-hint','Automatically entered when the patient is saved · IST'));}
-  if(index===1){w.append(el('div','inline-hint','English letters A–Z and spaces only; automatically converted to capitals.'));}
   return w;
 }
 function addExtraCard(value,dateString,existing){
@@ -301,14 +325,25 @@ function iapLookup(ageValue,sexValue){
 }
 function updateGrowthReference(changed){
   const iap=iapLookup(fields[3]?.value||'',fields[4]?.value||'');
-  const hint=$('iapHint');
-  if(!iap){hint.textContent='IAP 2015 reference available for ages 5–18, sex M/F only. For other ages, leave ideal values blank or use an independently validated standard.';hint.className='iap-status';
-    if(changed){[31,32].forEach(i=>{fields[i].value='';vals[i]='';dirty.add(i);});}return;}
-  hint.textContent='IAP 2015 P50 (reference median): '+iap.height+' cm · '+iap.weight+' kg. Interpolated between published 6-month ages; not a diagnosis.';hint.className='iap-status active';
+  const hint=$('iapHint'),quickHeight=$('iapQuickHeight'),quickWeight=$('iapQuickWeight'),quickStatus=$('iapQuickStatus');
+  if(!iap){
+    quickHeight.textContent='—';quickWeight.textContent='—';
+    quickStatus.textContent='Select M or F and confirm the age (5–18 years) to display the reference.';
+    hint.textContent='IAP 2015 reference available for ages 5–18, sex M/F only. For other ages, leave ideal values blank or use an independently validated standard.';
+    hint.className='iap-status';
+    if(changed){[31,32].forEach(i=>{fields[i].value='';vals[i]='';dirty.add(i);});}
+    return;
+  }
+  quickHeight.textContent=iap.height+' cm';quickWeight.textContent=iap.weight+' kg';
+  quickStatus.textContent='Age '+fields[3].value+' years · '+(fields[4].value==='M'?'Male':'Female')+' · Population median, not an individual treatment target.';
+  hint.textContent='IAP 2015 P50 (reference median): '+iap.height+' cm · '+iap.weight+' kg. Interpolated between published 6-month ages; not a diagnosis.';
+  hint.className='iap-status active';
   if(changed || !record){fields[31].value=iap.height;fields[32].value=iap.weight;vals[31]=iap.height;vals[32]=iap.weight;if(changed){dirty.add(31);dirty.add(32);}}
 }
 function build(){
-  [0,1,2,3,4,5].forEach(i=>$('fieldsIdentity').append(makeField(i)));
+  [0,1,2].forEach(i=>$('fieldsIdentity').append(makeField(i)));
+  const ageSex=el('div','age-sex-inline');ageSex.append(makeField(3),makeField(4));
+  $('fieldsIdentity').append(ageSex,makeField(5));
   [6,7,8,9,10,11].forEach(i=>$('fieldsClinical').append(makeField(i,i===8?'textarea':'text')));
   FERRITIN.forEach(([vi,di],i)=>{const card=el('div','ferritin-row'),title=el('div','ferritin-number','FERRITIN RESULT '+(i+1)),pair=el('div','two');pair.append(makeField(vi),makeField(di));card.append(title,pair);$('ferritinFields').append(card);});
   [30,31,32,33,34,35].forEach(i=>$('fieldsGrowth').append(makeField(i)));
@@ -374,7 +409,7 @@ function summary(){
 }
 function validate(){
   if(!fields[1].value.trim()||!fields[2].value.trim())return 'Name and CR . No are required.';
-  if((!record||dirty.has(1))&&!/^[A-Z]+(?: [A-Z]+)*$/.test(fields[1].value.trim()))return 'Name must contain CAPITAL LETTERS A–Z and spaces only.';
+  if((!record||dirty.has(1))&&!/^[A-Z]+(?: [A-Z]+)*$/.test(fields[1].value.trim()))return 'Please enter a valid patient name.';
   if((!record||dirty.has(3))&&fields[3].value!==''&&(!/^\d+(?:\.\d{1,2})?$/.test(fields[3].value)||Number(fields[3].value)>120))return 'Age must be a valid number between 0 and 120.';
   if(fields[5].value && !/^\d{10}$/.test(fields[5].value))return 'Mobile number must contain exactly 10 digits.';
   for(const [vi,di] of FERRITIN){if(!record||dirty.has(vi)||dirty.has(di)){const v=fields[vi].value,d=fields[di].value;if((v||d)&&(!v||!d))return 'Ferritin '+(1+(vi-12)/2)+' needs both a value and a selected date.';}}
