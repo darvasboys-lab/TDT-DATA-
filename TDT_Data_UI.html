@@ -133,6 +133,47 @@
 .picker-clear{width:100%;margin-top:12px;padding:12px;border:1px solid #ddcdd0;background:#fff2f4;color:#94546a;font-weight:850;border-radius:12px}
 @media(max-width:365px){.stepper{grid-template-columns:53px minmax(0,1fr) 53px}.stepper-btn{min-height:57px}.tanner-options{gap:4px}.tanner-options .touch-option{min-height:43px}.picker-grid.days{gap:3px}.picker-option{min-height:43px;font-size:12px}}
 
+
+/* TDT DATA: aligned clinical comparison cards (UI-only; original 39 columns unchanged). */
+.iap-quick{margin-top:0;padding:13px;border:1px solid #d4e5df;background:linear-gradient(145deg,#f7fcfa,#eef6f1);border-radius:18px}
+.iap-quick-head{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#3e665b;font-size:11px;letter-spacing:.055em;margin-bottom:10px}
+.iap-source-pill{font-size:10px;white-space:nowrap;border-radius:20px;padding:5px 8px;background:#e4f3e8;color:#2e775b;letter-spacing:0}
+.growth-pairs{display:grid;gap:10px}
+.growth-metric{--grade-bg:#f6faf9;--grade-border:#dce9e7;--grade-text:#547f7c;border:1px solid var(--grade-border);border-radius:15px;padding:10px;background:linear-gradient(138deg,#fff,var(--grade-bg));transition:background .17s,border-color .17s}
+.growth-metric[data-grade="critical"]{--grade-bg:#f7c6cb;--grade-border:#cb4355;--grade-text:#8e2436}
+.growth-metric[data-grade="strong"]{--grade-bg:#fbe0dd;--grade-border:#e57a78;--grade-text:#ad4247}
+.growth-metric[data-grade="moderate"]{--grade-bg:#ffebe6;--grade-border:#f2aea1;--grade-text:#ac6355}
+.growth-metric[data-grade="mild"]{--grade-bg:#fff1e9;--grade-border:#f4d4bc;--grade-text:#a5794d}
+.growth-metric[data-grade="median"]{--grade-bg:#e6f7ec;--grade-border:#b3dbbd;--grade-text:#257751}
+.growth-metric[data-grade="above"]{--grade-bg:#d9f3e8;--grade-border:#9cd6c1;--grade-text:#207d61}
+.growth-metric[data-grade="high"]{--grade-bg:#e4effb;--grade-border:#bad5e8;--grade-text:#386d94}
+.growth-metric-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;color:#456e73;font-size:11px;font-weight:900;letter-spacing:.05em}
+.growth-badge{border-radius:20px;padding:5px 8px;background:var(--grade-bg);border:1px solid var(--grade-border);color:var(--grade-text);font-size:10px;letter-spacing:0;text-align:right}
+.growth-metric-grid{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);gap:8px;align-items:stretch}
+.growth-metric .iap-quick-item{display:flex;flex-direction:column;justify-content:center;min-width:0;margin:0;border:1px solid #dcebe4;border-radius:12px;padding:9px;background:#ffffffe0}
+.growth-metric .iap-quick-item span{font-size:9px;line-height:1.4;color:#719089}
+.growth-metric .iap-quick-item strong{font-size:20px;color:#245e50;margin-top:6px;line-height:1.2;white-space:nowrap}
+.growth-actual-slot{min-width:0;display:flex;align-items:stretch}
+.growth-actual-slot>.field{margin:0;min-width:0;width:100%}
+.growth-actual-slot .label{font-size:10px;margin-bottom:5px}
+.growth-actual-slot .stepper{grid-template-columns:36px minmax(0,1fr) 36px;gap:3px}
+.growth-actual-slot .stepper-btn{min-height:52px;font-size:26px;border-radius:9px;padding:0}
+.growth-actual-slot .stepper-middle{border-radius:9px}
+.growth-actual-slot .stepper-input{font-size:20px;min-height:27px}
+.growth-actual-slot .stepper-unit{font-size:10px}
+.growth-progress{height:6px;border-radius:8px;background:linear-gradient(90deg,#c54256 0%,#e78b83 24%,#f7d9c3 40%,#bedfc7 50%,#63bf8f 67%,#c9d8ea 100%);position:relative;margin:11px 2px 7px}
+.growth-progress-zero{position:absolute;top:-3px;bottom:-3px;left:50%;width:2px;background:#244e56a8;border-radius:4px}
+.growth-progress-needle{position:absolute;top:-4px;width:8px;height:14px;transform:translateX(-50%);border:2px solid white;background:#305a65;border-radius:6px;box-shadow:0 1px 4px #234e6573;transition:left .17s}
+.growth-deviation{color:var(--grade-text);font-size:11px;line-height:1.45;font-weight:750;min-height:16px}
+.growth-safety{font-size:10px;line-height:1.55;color:#728b89;padding:10px 1px 0}
+.iap-quick-status{font-size:10px;margin-top:10px;color:#587b75}
+.growth-definition{margin-top:11px;border-radius:12px;border:1px solid #dbe9e4;background:#f5faf8;padding:11px;color:#567381;font-size:11px;line-height:1.55}
+.growth-definition strong{font-size:12px;color:#315b55}
+.growth-definition p{margin:7px 0 0}
+#fieldsGrowth>.field:nth-child(1){grid-column:1/-1}
+#fieldsGrowth>.field:nth-child(2){grid-column:1/-1}
+@media(max-width:365px){.iap-quick{padding:9px}.growth-metric{padding:8px}.growth-metric-grid{grid-template-columns:minmax(0,.40fr) minmax(0,.60fr);gap:5px}.growth-metric .iap-quick-item{padding:7px 5px}.growth-metric .iap-quick-item strong{font-size:17px}.growth-actual-slot .stepper{grid-template-columns:29px minmax(0,1fr) 29px;gap:2px}.growth-actual-slot .stepper-btn{font-size:23px}.growth-actual-slot .stepper-input{font-size:17px}.growth-badge{font-size:9px;padding:4px}}
+
 </style>
 </head>
 <body>
@@ -154,18 +195,40 @@
       </div>
       <form id="recordForm" autocomplete="off">
         <details class="accordion glass" open><summary><span class="no">01</span> Patient identification <span class="chev">⌄</span></summary><div class="inner"><div class="two" id="fieldsIdentity"></div>
-          <div class="iap-quick" aria-live="polite" aria-atomic="true">
-            <div class="iap-quick-head">IAP 2015 · 50th percentile reference</div>
-            <div class="iap-quick-grid">
-              <div class="iap-quick-item"><span>IDEAL HEIGHT</span><strong id="iapQuickHeight">—</strong></div>
-              <div class="iap-quick-item"><span>IDEAL WEIGHT</span><strong id="iapQuickWeight">—</strong></div>
-            </div>
-            <div class="iap-quick-status" id="iapQuickStatus">Select M or F to see the age-based reference. Verify the patient's age.</div>
-          </div>
+
         </div></details>
-        <details class="accordion glass" open><summary><span class="no">02</span> Clinical measurements <span class="chev">⌄</span></summary><div class="inner"><p class="quick-default-hint">Height starts at 120 cm and weight at 30 kg for faster entry. Confirm actual measurements before saving.</p><div class="two" id="fieldsClinical"></div></div></details>
+        <details class="accordion glass" open><summary><span class="no">02</span> Clinical measurements <span class="chev">⌄</span></summary><div class="inner">
+          <div class="iap-quick" aria-live="polite" aria-atomic="true">
+            <div class="iap-quick-head"><span>GROWTH COMPARISON</span><span class="iap-source-pill">IAP 2015 · P50</span></div>
+            <div id="growthPairs" class="growth-pairs">
+              <div class="growth-metric" id="growthMetricHeight" data-grade="pending">
+                <div class="growth-metric-head"><span>HEIGHT</span><span class="growth-badge" id="growthHeightBadge">Awaiting measurement</span></div>
+                <div class="growth-metric-grid"><div class="iap-quick-item"><span>REFERENCE · P50</span><strong id="iapQuickHeight">—</strong></div><div class="growth-actual-slot" id="growthHeightEntry"></div></div>
+                <div class="growth-progress"><span class="growth-progress-zero"></span><span class="growth-progress-needle" id="growthHeightNeedle"></span></div>
+                <div class="growth-deviation" id="growthHeightDeviation">Select age and sex, then confirm actual height.</div>
+              </div>
+              <div class="growth-metric" id="growthMetricWeight" data-grade="pending">
+                <div class="growth-metric-head"><span>WEIGHT</span><span class="growth-badge" id="growthWeightBadge">Awaiting measurement</span></div>
+                <div class="growth-metric-grid"><div class="iap-quick-item"><span>REFERENCE · P50</span><strong id="iapQuickWeight">—</strong></div><div class="growth-actual-slot" id="growthWeightEntry"></div></div>
+                <div class="growth-progress"><span class="growth-progress-zero"></span><span class="growth-progress-needle" id="growthWeightNeedle"></span></div>
+                <div class="growth-deviation" id="growthWeightDeviation">Select age and sex, then confirm actual weight.</div>
+              </div>
+            </div>
+            <div class="iap-quick-status" id="iapQuickStatus">Choose age and M/F to show the age-based IAP median.</div>
+            <div class="growth-safety">Colour reflects an approximate distance from the IAP median using the published SD column, not an exact LMS z-score or diagnosis. Confirm actual measurements; for weight, consider BMI-for-age and clinical assessment.</div>
+          </div>
+          <p class="quick-default-hint" style="margin-top:10px">Initial height 120 cm and weight 30 kg are entry shortcuts, not measurements. Adjust or confirm them to activate the comparison.</p>
+          <div class="two" id="fieldsClinical"></div>
+        </div></details>
         <details class="accordion glass" open><summary><span class="no">03</span> Ferritin monitoring · expandable history <span class="chev">⌄</span></summary><div class="inner"><p class="subtle">Tap a date to select <strong>year → month → day</strong>. Enter a value and date together. Add as many later ferritin values as needed.</p><div id="ferritinFields" class="ferritin-list"></div><div id="extraFerritinFields" class="ferritin-list" style="margin-top:8px"></div><button type="button" class="add-ferritin" id="addFerritin">＋ Add another ferritin result</button><p class="subtle" style="margin-top:9px">Results 10 onward create additional value/date columns after the original 39 columns. Existing patient data and image links stay in place.</p></div></details>
-        <details class="accordion glass"><summary><span class="no">04</span> Growth &amp; puberty <span class="chev">⌄</span></summary><div class="inner"><div class="two" id="fieldsGrowth"></div><div id="iapHint" class="iap-status">Enter age and sex to calculate the IAP 2015 50th-percentile height and weight reference.</div><div class="subtle" style="margin-top:7px">Published IAP reference ages 5–18 years; estimates between chart ages are interpolated. This is a reference, not a diagnosis. Actual height/weight remain separate entries.</div></div></details>
+        <details class="accordion glass"><summary><span class="no">04</span> Growth &amp; puberty <span class="chev">⌄</span></summary><div class="inner">
+          <div class="two" id="fieldsGrowth"></div><div id="iapHiddenFields" hidden></div>
+          <div class="growth-definition"><strong>What should I enter?</strong>
+          <p><b>Delay:</b> Record a clinician-assessed growth or puberty concern, or leave it blank if not assessed. A single low reading does not confirm delay.</p>
+          <p><b>HT %ile:</b> Height-for-age percentile on the age/sex IAP chart (e.g. 10 means 10th percentile, not 10% below ideal).</p>
+          <p><b>WT %ile:</b> Weight-for-age percentile on the age/sex IAP chart. These two fields are intentionally manual until a validated centile calculator is added.</p></div>
+          <div id="iapHint" class="iap-status">Enter age and sex to calculate the IAP 2015 50th-percentile reference.</div>
+        </div></details>
         <details class="accordion glass"><summary><span class="no">05</span> Images · 3 slots <span class="chev">⌄</span></summary><div class="inner"><p class="subtle">Store private Google Drive links. Photo upload is enabled only after a private folder is configured; JPG, PNG or WebP, 2 MB maximum per file.</p><div id="fieldsImages"></div></div></details>
       </form>
     </section>
@@ -233,8 +296,16 @@ function renderPicker(stage){
 function openPicker(target){picker={target,year:null,month:null};$('datePickerModal').hidden=false;renderPicker('year');$('pickerCancel').focus();}
 function closePicker(){$('datePickerModal').hidden=true;picker.target=null;}
 function syncDateButton(input){const b=input.parentNode.querySelector('.date-touch');if(b){b.textContent=prettyISO(input.value);b.classList.toggle('filled',!!input.value);}}
-function register(index,field){fields[index]=field;field.dataset.index=String(index);field.addEventListener('input',()=>{vals[index]=field.value;if(!building)dirty.add(index);if(index===3||index===4)updateGrowthReference(true);});return field;}
-function fieldWrap(index){const w=el('div','field'),l=el('label','label',boot.headers[index]+(index<3?' *':''));l.htmlFor='field'+index;w.append(l);return w;}
+function register(index,field){fields[index]=field;field.dataset.index=String(index);field.addEventListener('input',()=>{
+  vals[index]=field.value;
+  if(!building)dirty.add(index);
+  if(index===3||index===4)updateGrowthReference(true);
+  else if(index===6||index===7)updateGrowthComparison();
+});return field;}
+function fieldWrap(index){
+  const labels={33:'Delay · clinical assessment',34:'HT %ile · chart percentile',35:'WT %ile · chart percentile'};
+  const w=el('div','field'),l=el('label','label',(labels[index]||boot.headers[index])+(index<3?' *':''));l.htmlFor='field'+index;w.append(l);return w;
+}
 function touchOptions(index,options,cssClass){
   const w=fieldWrap(index),hidden=register(index,el('input'));hidden.type='hidden';hidden.id='field'+index;w.append(hidden);
   const area=el('div','touch-options '+cssClass);options.forEach(([value,label])=>{const b=el('button','touch-option',label);b.type='button';b.dataset.value=value;if(index===4)b.setAttribute('aria-label',value==='M'?'Male':'Female');b.addEventListener('click',()=>{hidden.value=value;hidden.dispatchEvent(new Event('input',{bubbles:true}));refreshTouch(index);});area.append(b);});w.append(area);w.append(el('div','choice-legacy subtle'));return w;
@@ -278,6 +349,8 @@ function makeField(index,kind){
   if(index===5){input.type='text';input.inputMode='numeric';input.maxLength=10;input.placeholder='10-digit mobile number';}
   if([9,12,14,16,18,20,22,24,26,28,31,32,34,35].includes(index)){input.type='number';input.inputMode='decimal';input.min='0';input.step='any';input.placeholder='Numeric value';}
   if([31,32].includes(index)){input.readOnly=true;input.classList.add('iap-readonly');input.title='Calculated IAP 2015 50th centile reference where available';}
+  if(index===33)input.placeholder='Leave blank if not assessed';
+  if(index===34||index===35){input.placeholder='Chart percentile (3–97)';input.min='0';input.max='100';}
   register(index,input);
   if(index===1)input.addEventListener('input',()=>{
     const before=input.value,caret=input.selectionStart;
@@ -323,6 +396,50 @@ function iapLookup(ageValue,sexValue){
   const round=x=>(Math.round(x*10)/10).toFixed(1);
   return {height:round(table[sex].height[i]*(1-t)+table[sex].height[j]*t),weight:round(table[sex].weight[i]*(1-t)+table[sex].weight[j]*t)};
 }
+// IAP 2015 Indian Pediatrics 52:47–55, Tables II–V, 'SD' column.
+// These SDs are used ONLY to show approximate colour bands, never to diagnose.
+const TDT_IAP_SD={
+ M:{height:[5.7,5.3,5.6,5.5,5.9,5.7,6.3,6.1,6.4,6.4,6.8,6.5,7.6,7.3,8.1,7.9,9.0,8.4,9.0,7.8,7.9,6.6,7.2,6.7,6.9,6.1,6.9],weight:[3.2,2.9,3.6,3.8,4.2,4.9,5.7,6.5,6.3,7.0,7.9,8.3,8.9,9.3,10.0,10.6,11.3,11.4,12.1,11.6,12.1,11.2,12.2,12.6,12.3,12.3,11.3]},
+ F:{height:[5.4,5.7,5.8,5.5,6.1,6.0,6.2,6.8,6.9,6.6,7.8,7.3,7.9,7.1,7.0,6.7,6.9,6.0,6.6,5.9,6.6,5.9,6.1,6.4,6.5,6.7,6.6],weight:[2.5,3.5,3.4,4.1,4.4,4.8,5.2,6.4,6.4,6.9,7.7,8.3,8.5,9.1,9.0,9.7,9.4,9.8,9.6,9.4,9.6,8.7,8.7,9.2,8.8,9.5,10.2]}
+};
+function iapApproxSd(age,sex,kind){
+  const t=TDT_IAP_SD[sex]?.[kind];if(!t||!Number.isFinite(age)||age<5||age>18)return null;
+  const position=(age-5)*2,i=Math.min(26,Math.floor(position+1e-9)),j=Math.min(26,i+1),fraction=Math.max(0,Math.min(1,position-i));
+  const sd=t[i]*(1-fraction)+t[j]*fraction;
+  return Number.isFinite(sd)&&sd>0?sd:null;
+}
+function updateGrowthComparison(){
+  if(!fields[3]||!fields[4]||!fields[6]||!fields[7])return;
+  const age=Number(fields[3].value),s=text(fields[4].value).trim().toUpperCase(),sex=s==='MALE'?'M':s==='FEMALE'?'F':s;
+  const ref=iapLookup(fields[3].value,sex);
+  for(const [kind,index,prefix,unit] of [['height',6,'Height','cm'],['weight',7,'Weight','kg']]){
+    const card=$('growthMetric'+prefix),badge=$('growth'+prefix+'Badge'),note=$('growth'+prefix+'Deviation'),needle=$('growth'+prefix+'Needle');
+    if(!card)continue;
+    const valueText=fields[index].value;
+    // Prefilled new-record defaults are not actual measurements until touched/confirmed.
+    const confirmed=!!record||dirty.has(index);
+    const num=Number(valueText),median=ref?Number(ref[kind]):NaN,sd=iapApproxSd(age,sex,kind);
+    if(!ref||!confirmed||valueText===''||!Number.isFinite(num)||num<=0||!Number.isFinite(sd)){
+      card.dataset.grade='pending';badge.textContent=ref?(confirmed?'Enter valid value':'Confirm actual value'):'Select age and M/F';
+      note.textContent=ref?'Initial value is a shortcut; adjust or confirm it before interpretation.':'Reference available for ages 5–18 years only.';
+      needle.style.left='50%';needle.hidden=true;continue;
+    }
+    const diff=num-median,z=diff/sd;
+    let grade,label;
+    if(z < -3){grade='critical';label='Far below median';}
+    else if(z < -2){grade='strong';label='Markedly below median';}
+    else if(z < -1){grade='moderate';label='Below median';}
+    else if(z < -0.3){grade='mild';label='Slightly below median';}
+    else if(z <= 1){grade='median';label=z<0?'Near median':'At / above median';}
+    else if(z <= 2){grade='above';label='Above median';}
+    else {grade='high';label='Well above median';}
+    card.dataset.grade=grade;badge.textContent=label;
+    needle.hidden=false;needle.style.left=(50+Math.max(-3.5,Math.min(3.5,z))/3.5*48)+'%';
+    const distance=Math.abs(diff).toFixed(1),direction=diff<0?'below':diff>0?'above':'at';
+    note.textContent=direction==='at'?'Matches the IAP P50 median · approx 0.0 SD':distance+' '+unit+' '+direction+' P50 · approx '+(z>0?'+':'')+z.toFixed(1)+' SD from median';
+  }
+}
+
 function updateGrowthReference(changed){
   const iap=iapLookup(fields[3]?.value||'',fields[4]?.value||'');
   const hint=$('iapHint'),quickHeight=$('iapQuickHeight'),quickWeight=$('iapQuickWeight'),quickStatus=$('iapQuickStatus');
@@ -332,6 +449,7 @@ function updateGrowthReference(changed){
     hint.textContent='IAP 2015 reference available for ages 5–18, sex M/F only. For other ages, leave ideal values blank or use an independently validated standard.';
     hint.className='iap-status';
     if(changed){[31,32].forEach(i=>{fields[i].value='';vals[i]='';dirty.add(i);});}
+    updateGrowthComparison();
     return;
   }
   quickHeight.textContent=iap.height+' cm';quickWeight.textContent=iap.weight+' kg';
@@ -339,14 +457,18 @@ function updateGrowthReference(changed){
   hint.textContent='IAP 2015 P50 (reference median): '+iap.height+' cm · '+iap.weight+' kg. Interpolated between published 6-month ages; not a diagnosis.';
   hint.className='iap-status active';
   if(changed || !record){fields[31].value=iap.height;fields[32].value=iap.weight;vals[31]=iap.height;vals[32]=iap.weight;if(changed){dirty.add(31);dirty.add(32);}}
+  updateGrowthComparison();
 }
 function build(){
   [0,1,2].forEach(i=>$('fieldsIdentity').append(makeField(i)));
   const ageSex=el('div','age-sex-inline');ageSex.append(makeField(3),makeField(4));
   $('fieldsIdentity').append(ageSex,makeField(5));
-  [6,7,8,9,10,11].forEach(i=>$('fieldsClinical').append(makeField(i,i===8?'textarea':'text')));
+  $('growthHeightEntry').append(makeField(6));
+  $('growthWeightEntry').append(makeField(7));
+  [8,9,10,11].forEach(i=>$('fieldsClinical').append(makeField(i,i===8?'textarea':'text')));
   FERRITIN.forEach(([vi,di],i)=>{const card=el('div','ferritin-row'),title=el('div','ferritin-number','FERRITIN RESULT '+(i+1)),pair=el('div','two');pair.append(makeField(vi),makeField(di));card.append(title,pair);$('ferritinFields').append(card);});
-  [30,31,32,33,34,35].forEach(i=>$('fieldsGrowth').append(makeField(i)));
+  [30,33,34,35].forEach(i=>$('fieldsGrowth').append(makeField(i)));
+  [31,32].forEach(i=>$('iapHiddenFields').append(makeField(i)));
   [36,37,38].forEach((i,slot)=>{
     const card=el('div','upload-row');card.append(el('div','upload-title','IMAGE '+(slot+1)));card.append(makeField(i,'image'));
     const tools=el('div','upload-actions'),chooser=el('input');chooser.type='file';chooser.accept='image/jpeg,image/png,image/webp';chooser.hidden=true;
@@ -376,6 +498,7 @@ function populate(item){
   [36,37,38].forEach(i=>fields[i].dispatchEvent(new Event('input')));
   updateGrowthReference(false);
   building=false;dirty.clear();dirtyExtra.clear();
+  updateGrowthComparison();
   $('entryTitle').textContent=item?'Editing saved record':'New TDT patient record';
   $('writePill').textContent=boot.writeEnabled?'Save enabled':'View only';$('writePill').classList.toggle('ok',boot.writeEnabled);
   $('saveOnly').disabled=$('saveNext').disabled=!boot.writeEnabled;
