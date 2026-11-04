@@ -1,0 +1,19 @@
+# Keep credentials, runtime artifacts, and patient data out of source control
+.env
+.env.*
+!.env.example
+.clasp.json
+.clasprc.json
+*.csv
+*.xlsx
+*.xls
+*.tsv
+*.sqlite
+*.db
+*.log
+.DS_Store
+node_modules/
+secrets/
+patient_data/
+exports/
+backups/
